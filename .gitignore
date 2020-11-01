@@ -49,6 +49,7 @@ typings/
 .idea/
 .*.swp
 .vscode/chrome
+.vscode/
 
 # environment variables file
 .env

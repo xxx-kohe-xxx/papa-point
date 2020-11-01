@@ -19,12 +19,16 @@
     "noEmit": true,
     "jsx": "react",
     "baseUrl": "src",
-    "incremental": true
+    "incremental": true,
+    "noFallthroughCasesInSwitch": true
   },
   "include": [
     "src"
   ],
   "exclude": [
-    "node_modules", "build", "scripts", "functions"
+    "node_modules",
+    "build",
+    "scripts",
+    "functions"
   ]
 }

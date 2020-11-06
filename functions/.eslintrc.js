@@ -3,69 +3,168 @@ module.exports = {
     browser: true,
     es6: true,
     node: true,
+    'jest/globals': true,
   },
   extends: [
-    "plugin:import/errors",
-    "plugin:import/warnings",
-    "plugin:import/typescript",
+    'airbnb',
+    'eslint:recommended',
+    'plugin:@typescript-eslint/eslint-recommended',
+    'plugin:@typescript-eslint/recommended',
+    'plugin:import/errors',
+    'plugin:import/warnings',
+    'plugin:import/typescript',
+    'plugin:jest/recommended',
+    'plugin:jsx-a11y/recommended',
+    'plugin:prettier/recommended',
+    'plugin:react/recommended',
+    'prettier',
+    'prettier/@typescript-eslint',
+    'prettier/react',
+    'prettier/standard',
   ],
-  parser: "@typescript-eslint/parser",
+  globals: {
+    Atomics: 'readonly',
+    cy: 'readonly',
+    Cypress: 'readonly',
+    SharedArrayBuffer: 'readonly',
+    __DEV__: true,
+  },
+  parser: '@typescript-eslint/parser',
   parserOptions: {
-    project: "tsconfig.json",
-    sourceType: "module",
+    ecmaFeatures: {
+      jsx: true,
+    },
+    ecmaVersion: 2018,
+    project: './tsconfig.json',
+    sourceType: 'module',
   },
   plugins: [
-    "@typescript-eslint",
-    "import",
+    '@typescript-eslint',
+    'import',
+    'jest',
+    'jsx-a11y',
+    'prefer-arrow',
+    'prettier',
+    'react',
+    'react-hooks',
   ],
+  root: true,
   rules: {
-    "@typescript-eslint/adjacent-overload-signatures": "error",
-    "@typescript-eslint/no-empty-function": "error",
-    "@typescript-eslint/no-empty-interface": "warn",
-    "@typescript-eslint/no-floating-promises": "error",
-    "@typescript-eslint/no-namespace": "error",
-    "@typescript-eslint/no-unnecessary-type-assertion": "error",
-    "@typescript-eslint/prefer-for-of": "warn",
-    "@typescript-eslint/triple-slash-reference": "error",
-    "@typescript-eslint/unified-signatures": "warn",
-    "comma-dangle": "warn",
-    "constructor-super": "error",
-    eqeqeq: ["warn", "always"],
-    "import/no-deprecated": "warn",
-    "import/no-extraneous-dependencies": "error",
-    "import/no-unassigned-import": "warn",
-    "no-cond-assign": "error",
-    "no-duplicate-case": "error",
-    "no-duplicate-imports": "error",
-    "no-empty": [
-      "error",
+    // eslint official
+    'linebreak-style': ['error', 'unix'],
+    'newline-before-return': 'error',
+    'no-console': 'warn',
+    'no-continue': 'off',
+    quotes: ['error', 'single', { avoidEscape: true }],
+    'require-yield': 'error',
+    semi: ['error', 'always'],
+    // for react-app-env.d.ts (https://github.com/facebook/create-react-app/issues/6560)
+    'spaced-comment': [
+      'error',
+      'always',
       {
-        allowEmptyCatch: true,
+        markers: ['/'],
       },
     ],
-    "no-invalid-this": "error",
-    "no-new-wrappers": "error",
-    "no-param-reassign": "error",
-    "no-redeclare": "error",
-    "no-sequences": "error",
-    "no-shadow": [
-      "error",
+
+    // @typescript-eslint
+    '@typescript-eslint/explicit-function-return-type': 'off',
+    '@typescript-eslint/explicit-member-accessibility': 'off',
+    indent: 'off',
+    '@typescript-eslint/indent': 'off',
+    '@typescript-eslint/no-unnecessary-type-assertion': 'error',
+    '@typescript-eslint/no-unused-vars': 'error',
+    '@typescript-eslint/prefer-interface': 'off',
+
+    // airbnb
+    'no-restricted-syntax': [
+      'error',
       {
-        hoist: "all",
+        selector: 'ForInStatement',
+        message:
+          'for..in loops iterate over the entire prototype chain, which is virtually never what you want. Use Object.{keys,values,entries}, and iterate over the resulting array.',
+      },
+      {
+        selector: 'LabeledStatement',
+        message:
+          'Labels are a form of GOTO; using them makes code confusing and hard to maintain and understand.',
+      },
+      {
+        selector: 'WithStatement',
+        message:
+          '`with` is disallowed in strict mode because it makes code impossible to predict and optimize.',
       },
     ],
-    "no-throw-literal": "error",
-    "no-unsafe-finally": "error",
-    "no-unused-labels": "error",
-    "no-var": "warn",
-    "no-void": "error",
-    "prefer-const": "warn",
+    // prefer-arrow
+    'prefer-arrow/prefer-arrow-functions': [
+      'error',
+      {
+        disallowPrototype: true,
+        singleReturnOnly: true,
+        classPropertiesAllowed: false,
+      },
+    ],
+
+    // react
+    'react/jsx-filename-extension': [
+      'error',
+      {
+        extensions: ['jsx', 'tsx'],
+      },
+    ],
+    'react/jsx-props-no-spreading': [
+      'warn',
+      {
+        custom: 'ignore',
+      },
+    ],
+    'react/prop-types': 'off',
+
+    // react hooks
+    'react-hooks/rules-of-hooks': 'error',
+    'react-hooks/exhaustive-deps': 'error',
+
+    // import
+    'import/extensions': [
+      'error',
+      'always',
+      {
+        js: 'never',
+        jsx: 'never',
+        ts: 'never',
+        tsx: 'never',
+      },
+    ],
+    'import/no-extraneous-dependencies': [
+      'error',
+      {
+        devDependencies: [
+          '.storybook/**',
+          'stories/**',
+          '**/*/*.story.*',
+          '**/*/*.stories.*',
+          '**/__specs__/**',
+          '**/*/*.spec.*',
+          '**/__tests__/**',
+          '**/*/*.test.*',
+          'src/setupTests.*',
+        ],
+      },
+    ],
+    'import/prefer-default-export': 'off',
   },
   settings: {
-    jsdoc: {
-      tagNamePreference: {
-        returns: "return",
+    'import/parsers': {
+      '@typescript-eslint/parser': ['.ts', '.tsx'],
+    },
+    'import/resolver': {
+      node: {
+        extensions: ['.js', 'jsx', '.ts', '.tsx'],
+        paths: ['src'],
       },
+    },
+    react: {
+      version: 'detect',
     },
   },
 };

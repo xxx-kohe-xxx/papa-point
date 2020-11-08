@@ -2,7 +2,9 @@
 import React, { FC } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Card, CardContent, CardHeader } from '@material-ui/core';
+import useTotalPoints from 'hooks/use-total-points';
 
+// コンポーネントのスタイル設定
 const useStyles = makeStyles({
   root: {
     margin: '24px auto',
@@ -24,13 +26,13 @@ const useStyles = makeStyles({
 export const TotalPointsDisplay: FC = () => {
   const classes = useStyles();
   const unit = <span className={classes.unit}>papapo</span>;
-  const totalPoint = 95;
+  const totalPoints = useTotalPoints();
 
   return (
     <Card className={classes.root}>
       <CardHeader title="現在の合計PapaPointは" disableTypography />
       <CardContent className={classes.content}>
-        {totalPoint}
+        {totalPoints}
         {unit}
       </CardContent>
     </Card>

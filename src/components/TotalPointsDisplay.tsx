@@ -30,7 +30,7 @@ export const TotalPointsDisplay: FC = () => {
 
   return (
     <Card className={classes.root}>
-      <CardHeader title="現在の合計PapaPointは" disableTypography />
+      <CardHeader title="現在の合計PaPaPointは" disableTypography />
       <CardContent className={classes.content}>
         {totalPoints}
         {unit}

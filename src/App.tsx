@@ -2,7 +2,13 @@
 import React from 'react';
 import './App.css';
 import { TotalPointsDisplay } from 'components/TotalPointsDisplay';
+import { AddPoints } from 'components/AddPoints';
 
-const App = () => <TotalPointsDisplay />;
+const App = () => (
+  <>
+    <TotalPointsDisplay />
+    <AddPoints />
+  </>
+);
 
 export default App;

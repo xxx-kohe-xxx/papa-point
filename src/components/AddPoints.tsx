@@ -8,6 +8,7 @@ import {
   makeStyles,
   NativeSelect,
 } from '@material-ui/core';
+import useAddPoints from 'hooks/use-add-points';
 
 const useStyles = makeStyles({
   formControl: {
@@ -31,13 +32,10 @@ export const AddPoints: FC = () => {
   const classes = useStyles();
   const [point, setPoint] = useState(5);
   const papapoUnit = <span className={classes.papapoUnit}>papapo</span>;
+  const addPoint = useAddPoints(point);
 
   const handleChange = (event: ChangeEvent<{ value: unknown }>) => {
     setPoint(Number(event.target.value));
-  };
-
-  const handleClick = () => {
-    alert(`${point} papapoあげます`);
   };
 
   return (
@@ -60,11 +58,7 @@ export const AddPoints: FC = () => {
         </NativeSelect>
         <FormHelperText>{papapoUnit}</FormHelperText>
       </FormControl>
-      <Button
-        className={classes.button}
-        variant="contained"
-        onClick={handleClick}
-      >
+      <Button className={classes.button} variant="contained" onClick={addPoint}>
         ポイントをあげる
       </Button>
     </>

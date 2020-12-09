@@ -8,7 +8,7 @@ import {
   makeStyles,
   NativeSelect,
 } from '@material-ui/core';
-import useAddPoints from 'hooks/use-add-points';
+import useUpdateTotalPoints from 'hooks/use-update-total-points';
 
 const useStyles = makeStyles({
   formControl: {
@@ -28,14 +28,20 @@ const useStyles = makeStyles({
   },
 });
 
-export const AddPoints: FC = () => {
+type Props = {
+  totalPoint: number;
+  setTotalPoint: (totalPoint: number) => void;
+};
+
+export const AddPoints: FC<Props> = (props) => {
+  const { totalPoint, setTotalPoint } = props;
   const classes = useStyles();
-  const [point, setPoint] = useState(5);
+  const [addPoint, setAddPoint] = useState(5);
   const papapoUnit = <span className={classes.papapoUnit}>papapo</span>;
-  const addPoint = useAddPoints(point);
+  const updatePoint = useUpdateTotalPoints(addPoint, totalPoint, setTotalPoint);
 
   const handleChange = (event: ChangeEvent<{ value: unknown }>) => {
-    setPoint(Number(event.target.value));
+    setAddPoint(Number(event.target.value));
   };
 
   return (
@@ -46,7 +52,7 @@ export const AddPoints: FC = () => {
         </InputLabel>
         <NativeSelect
           className={classes.nativeSelect}
-          defaultValue={point}
+          defaultValue={addPoint}
           onChange={handleChange}
         >
           <option value={3}>3</option>
@@ -58,7 +64,11 @@ export const AddPoints: FC = () => {
         </NativeSelect>
         <FormHelperText>{papapoUnit}</FormHelperText>
       </FormControl>
-      <Button className={classes.button} variant="contained" onClick={addPoint}>
+      <Button
+        className={classes.button}
+        variant="contained"
+        onClick={updatePoint}
+      >
         ポイントをあげる
       </Button>
     </>

@@ -3,7 +3,7 @@ import { FirebaseContext } from 'contexts';
 import { useContext } from 'react';
 import { collectionName } from '../constants';
 
-const useGetTotalPoint = () => {
+const useGetTotalPoint: () => Promise<number> = () => {
   const { db } = useContext(FirebaseContext);
   if (!db) throw new Error('Firestore is not initialized');
 

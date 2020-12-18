@@ -1,35 +1,35 @@
 // eslint-disable-next-line no-use-before-define
 import React, { FC } from 'react';
-// import { Card, CardMedia, LinearProgress, makeStyles } from '@material-ui/core';
+import { Card, CardMedia, LinearProgress, makeStyles } from '@material-ui/core';
 import { GiftList } from 'models/gift-list';
-// import { cssConst } from '../constants';
+import { cssConst } from '../constants';
 
-// const useStyles = makeStyles({
-//   root: {
-//     margin: '24px auto',
-//     width: '90%',
-//   },
-//   media: {
-//     backgroundSize: 'cover',
-//     height: '25vh',
-//   },
-//   progress: {
-//     width: '90%',
-//     display: 'block',
-//     margin: `${cssConst.spaceM}px auto`,
-//     borderRadius: '14px',
-//     height: '1rem',
-//     backgroundColor: 'whiteSmoke',
-//   },
-//   progressBar: {
-//     backgroundColor: 'skyblue',
-//     borderRadius: '14px',
-//   },
-//   point: {
-//     textAlign: 'end',
-//     margin: cssConst.spaceS,
-//   },
-// });
+const useStyles = makeStyles({
+  root: {
+    margin: '24px auto',
+    width: '90%',
+  },
+  media: {
+    backgroundSize: 'cover',
+    height: '25vh',
+  },
+  progress: {
+    width: '90%',
+    display: 'block',
+    margin: `${cssConst.spaceM}px auto`,
+    borderRadius: '14px',
+    height: '1rem',
+    backgroundColor: 'whiteSmoke',
+  },
+  progressBar: {
+    backgroundColor: 'skyblue',
+    borderRadius: '14px',
+  },
+  point: {
+    textAlign: 'end',
+    margin: cssConst.spaceS,
+  },
+});
 
 type Props = {
   giftList: GiftList;
@@ -37,16 +37,14 @@ type Props = {
 };
 
 export const IndexGiftList: FC<Props> = (props) => {
-  console.log('Rendering IndexGiftList');
-  // const classes = useStyles();
-  // const progress = 90;
+  const classes = useStyles();
+  const progress = 90;
   const { giftList } = props;
-  console.log(giftList);
 
   return (
     <>
       <h2>景品一覧</h2>
-      {/* {giftList.map((gift) => {
+      {giftList.map((gift) => {
         if (!gift.id) {
           return false;
         }
@@ -66,7 +64,7 @@ export const IndexGiftList: FC<Props> = (props) => {
             </div>
           </Card>
         );
-      })} */}
+      })}
     </>
   );
 };

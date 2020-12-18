@@ -2,7 +2,11 @@ import { useContext } from 'react';
 import { FirebaseContext } from 'contexts';
 import { collectionName } from '../constants';
 
-const useUpdateTotalPoints = (
+const useUpdateTotalPoints: (
+  addPoint: number,
+  totalPoint: number,
+  setTotalPoint: (value: number) => void,
+) => () => Promise<void> = (
   addPoint: number,
   totalPoint: number,
   setTotalPoint: (value: number) => void,

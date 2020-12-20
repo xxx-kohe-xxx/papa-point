@@ -1,8 +1,8 @@
 // eslint-disable-next-line no-use-before-define
 import React, { FC } from 'react';
-import { Card, CardMedia, LinearProgress, makeStyles } from '@material-ui/core';
+import { Card, CardMedia, makeStyles } from '@material-ui/core';
 import { GiftList } from 'models/gift-list';
-import { cssConst } from '../constants';
+import ProgressBar from './ProgressBar';
 
 const useStyles = makeStyles({
   root: {
@@ -13,33 +13,16 @@ const useStyles = makeStyles({
     backgroundSize: 'cover',
     height: '25vh',
   },
-  progress: {
-    width: '90%',
-    display: 'block',
-    margin: `${cssConst.spaceM}px auto`,
-    borderRadius: '14px',
-    height: '1rem',
-    backgroundColor: 'whiteSmoke',
-  },
-  progressBar: {
-    backgroundColor: 'skyblue',
-    borderRadius: '14px',
-  },
-  point: {
-    textAlign: 'end',
-    margin: cssConst.spaceS,
-  },
 });
 
 type Props = {
   giftList: GiftList;
-  setGiftList: (giftList: GiftList) => void;
+  totalPoint: number;
 };
 
 export const IndexGiftList: FC<Props> = (props) => {
   const classes = useStyles();
-  const progress = 90;
-  const { giftList } = props;
+  const { giftList, totalPoint } = props;
 
   return (
     <>
@@ -52,16 +35,10 @@ export const IndexGiftList: FC<Props> = (props) => {
         return (
           <Card className={classes.root} key={gift.id}>
             <CardMedia className={classes.media} image={gift.pic} />
-            <div>
-              <LinearProgress
-                classes={{ root: classes.progress, bar: classes.progressBar }}
-                variant="determinate"
-                value={progress}
-              />
-              <p className={classes.point}>
-                あと 20 / {gift.exchangePoint}papapo
-              </p>
-            </div>
+            <ProgressBar
+              exchangePoint={gift.exchangePoint}
+              totalPoint={totalPoint}
+            />
           </Card>
         );
       })}

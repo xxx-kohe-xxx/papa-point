@@ -32,7 +32,7 @@ const App: FC = () => {
     <>
       <TotalPointsDisplay totalPoint={totalPoint} />
       <AddPoints totalPoint={totalPoint} setTotalPoint={setTotalPoint} />
-      <IndexGiftList giftList={giftList} setGiftList={setGiftList} />
+      <IndexGiftList giftList={giftList} totalPoint={totalPoint} />
     </>
   );
 };

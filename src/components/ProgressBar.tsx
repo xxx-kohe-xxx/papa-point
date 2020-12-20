@@ -32,7 +32,7 @@ const ProgressBar: FC<Props> = (props) => {
   const classes = useStyles();
   const { exchangePoint, totalPoint } = props;
   // 合計ポイントが交換ポイントを上回っている場合にTrue(交換可能)
-  const isExchangeable: boolean = totalPoint > exchangePoint;
+  const isExchangeable: boolean = totalPoint >= exchangePoint;
   const upToTargetPoint: number = exchangePoint - totalPoint;
   // 進捗率(単位は%)
   const progressRate: number = (totalPoint / exchangePoint) * 100;

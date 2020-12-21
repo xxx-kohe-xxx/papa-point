@@ -18,17 +18,18 @@ const useStyles = makeStyles({
 type Props = {
   giftList: GiftList;
   totalPoint: number;
+  setTotalPoint: (value: number) => void;
 };
 
 export const IndexGiftList: FC<Props> = (props) => {
   const classes = useStyles();
-  const { giftList, totalPoint } = props;
+  const { giftList, totalPoint, setTotalPoint } = props;
 
   return (
     <>
       <h2>景品一覧</h2>
       {giftList.map((gift) => {
-        if (!gift.id) {
+        if (!gift.id || gift.status) {
           return false;
         }
 
@@ -38,6 +39,8 @@ export const IndexGiftList: FC<Props> = (props) => {
             <ProgressBar
               exchangePoint={gift.exchangePoint}
               totalPoint={totalPoint}
+              docId={gift.id}
+              setTotalPoint={setTotalPoint}
             />
           </Card>
         );

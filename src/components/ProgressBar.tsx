@@ -26,11 +26,13 @@ const useStyles = makeStyles({
 type Props = {
   exchangePoint: number;
   totalPoint: number;
+  docId: string;
+  setTotalPoint: (value: number) => void;
 };
 
 const ProgressBar: FC<Props> = (props) => {
   const classes = useStyles();
-  const { exchangePoint, totalPoint } = props;
+  const { exchangePoint, totalPoint, docId, setTotalPoint } = props;
   // 合計ポイントが交換ポイントを上回っている場合にTrue(交換可能)
   const isExchangeable: boolean = totalPoint >= exchangePoint;
   const upToTargetPoint: number = exchangePoint - totalPoint;
@@ -38,7 +40,14 @@ const ProgressBar: FC<Props> = (props) => {
   const progressRate: number = (totalPoint / exchangePoint) * 100;
 
   if (isExchangeable) {
-    return <ExchangeButton />;
+    return (
+      <ExchangeButton
+        totalPoint={totalPoint}
+        exchangePoint={exchangePoint}
+        docId={docId}
+        setTotalPoint={setTotalPoint}
+      />
+    );
   }
 
   return (

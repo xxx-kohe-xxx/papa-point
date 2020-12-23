@@ -16,14 +16,8 @@ const useStyles = makeStyles({
   },
 });
 
-type Props = {
-  totalPoint: number;
-  setTotalPoint: (value: number) => void;
-};
-
-export const IndexGiftList: FC<Props> = (props) => {
+export const IndexGiftList: FC = () => {
   const classes = useStyles();
-  const { totalPoint, setTotalPoint } = props;
 
   // GiftList取得
   const getGiftListDoc = useGetGiftListDoc();
@@ -47,12 +41,7 @@ export const IndexGiftList: FC<Props> = (props) => {
         return (
           <Card className={classes.root} key={gift.id}>
             <CardMedia className={classes.media} image={gift.pic} />
-            <ProgressBar
-              exchangePoint={gift.exchangePoint}
-              totalPoint={totalPoint}
-              docId={gift.id}
-              setTotalPoint={setTotalPoint}
-            />
+            <ProgressBar exchangePoint={gift.exchangePoint} docId={gift.id} />
           </Card>
         );
       })}

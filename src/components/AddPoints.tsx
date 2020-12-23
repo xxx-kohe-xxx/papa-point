@@ -28,17 +28,11 @@ const useStyles = makeStyles({
   },
 });
 
-type Props = {
-  totalPoint: number;
-  setTotalPoint: (totalPoint: number) => void;
-};
-
-export const AddPoints: FC<Props> = (props) => {
-  const { totalPoint, setTotalPoint } = props;
+export const AddPoints: FC = () => {
   const classes = useStyles();
   const [addPoint, setAddPoint] = useState(5);
   const papapoUnit = <span className={classes.papapoUnit}>papapo</span>;
-  const updatePoint = useUpdateTotalPoints(addPoint, totalPoint, setTotalPoint);
+  const updatePoint = useUpdateTotalPoints(addPoint);
 
   const handleChange = (event: ChangeEvent<{ value: unknown }>) => {
     setAddPoint(Number(event.target.value));

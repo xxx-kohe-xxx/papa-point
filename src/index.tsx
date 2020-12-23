@@ -6,13 +6,16 @@ import firebase from 'firebase';
 import firebaseConfig from 'firebase-config';
 import App from './App';
 import FirebaseApp from './FirebaseApp';
+import TotalPointApp from './TotalPointApp';
 
 firebase.initializeApp(firebaseConfig);
 
 ReactDOM.render(
   <React.StrictMode>
     <FirebaseApp>
-      <App />
+      <TotalPointApp>
+        <App />
+      </TotalPointApp>
     </FirebaseApp>
   </React.StrictMode>,
   document.getElementById('root'),

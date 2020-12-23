@@ -13,21 +13,14 @@ const useStyles = makeStyles({
 });
 
 type Props = {
-  totalPoint: number;
   exchangePoint: number;
   docId: string;
-  setTotalPoint: (value: number) => void;
 };
 
 const ExchangeButton: FC<Props> = (props) => {
   const classes = useStyles();
-  const { totalPoint, exchangePoint, docId, setTotalPoint } = props;
-  const changeGiftListStatus = useChangeGiftListStatus(
-    totalPoint,
-    exchangePoint,
-    docId,
-    setTotalPoint,
-  );
+  const { exchangePoint, docId } = props;
+  const changeGiftListStatus = useChangeGiftListStatus(exchangePoint, docId);
 
   return (
     <Button

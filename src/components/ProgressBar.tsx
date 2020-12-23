@@ -1,6 +1,7 @@
 // eslint-disable-next-line no-use-before-define
-import React, { FC } from 'react';
+import React, { FC, useContext } from 'react';
 import { LinearProgress, makeStyles } from '@material-ui/core';
+import { TotalPointContext } from 'contexts';
 import { cssConst } from '../constants';
 import ExchangeButton from './ExchangeButton';
 
@@ -25,14 +26,13 @@ const useStyles = makeStyles({
 
 type Props = {
   exchangePoint: number;
-  totalPoint: number;
   docId: string;
-  setTotalPoint: (value: number) => void;
 };
 
 const ProgressBar: FC<Props> = (props) => {
   const classes = useStyles();
-  const { exchangePoint, totalPoint, docId, setTotalPoint } = props;
+  const { totalPoint } = useContext(TotalPointContext);
+  const { exchangePoint, docId } = props;
   // 合計ポイントが交換ポイントを上回っている場合にTrue(交換可能)
   const isExchangeable: boolean = totalPoint >= exchangePoint;
   const upToTargetPoint: number = exchangePoint - totalPoint;
@@ -40,14 +40,7 @@ const ProgressBar: FC<Props> = (props) => {
   const progressRate: number = (totalPoint / exchangePoint) * 100;
 
   if (isExchangeable) {
-    return (
-      <ExchangeButton
-        totalPoint={totalPoint}
-        exchangePoint={exchangePoint}
-        docId={docId}
-        setTotalPoint={setTotalPoint}
-      />
-    );
+    return <ExchangeButton exchangePoint={exchangePoint} docId={docId} />;
   }
 
   return (

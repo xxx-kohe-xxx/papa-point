@@ -1,14 +1,11 @@
 /* Firebaseのgift_listコレクションにアクセスし,statusフィールドを交換済み(true)に変更する */
-import { FirebaseContext } from 'contexts';
+import { FirebaseContext, TotalPointContext } from 'contexts';
 import { useContext } from 'react';
 import { collectionName } from '../constants';
 
-const useChangeGiftListStatus = (
-  totalPoint: number,
-  exchangePoint: number,
-  docId: string,
-  setTotalPoint: (value: number) => void,
-) => {
+const useChangeGiftListStatus = (exchangePoint: number, docId: string) => {
+  const { totalPoint, setTotalPoint } = useContext(TotalPointContext);
+  if (!setTotalPoint) throw new Error('setTotalPoint is null');
   const { db } = useContext(FirebaseContext);
   if (!db) throw new Error('Firestore is not initialized');
 

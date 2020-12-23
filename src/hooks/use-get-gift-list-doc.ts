@@ -19,6 +19,7 @@ const useGetGiftListDoc: () => Promise<GiftList> = () => {
           id: doc.id,
           exchangePoint: data.exchange_point,
           pic: data.pic,
+          status: data.status,
         };
         response.push(gift);
       });

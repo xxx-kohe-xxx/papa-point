@@ -1,7 +1,7 @@
 // eslint-disable-next-line no-use-before-define
 import React, { FC } from 'react';
 import { Button, makeStyles } from '@material-ui/core';
-import useChangeGiftListStatus from 'hooks/use-change-gigt-list-status';
+import useChangeGiftListStatus from 'hooks/use-change-gift-list-status';
 import { cssConst } from '../constants';
 
 const useStyles = makeStyles({

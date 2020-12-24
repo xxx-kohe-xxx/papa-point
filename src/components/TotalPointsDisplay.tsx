@@ -1,8 +1,9 @@
 /* 現在の合計ポイントを表示させるコンポーネント */
 // eslint-disable-next-line no-use-before-define
-import React, { FC } from 'react';
+import React, { FC, useContext } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Card, CardContent, CardHeader } from '@material-ui/core';
+import { TotalPointContext } from 'contexts';
 
 // コンポーネントのスタイル設定
 const useStyles = makeStyles({
@@ -23,13 +24,9 @@ const useStyles = makeStyles({
   },
 });
 
-type Props = {
-  totalPoint: number;
-};
-
-export const TotalPointsDisplay: FC<Props> = (props) => {
-  const { totalPoint } = props;
+export const TotalPointsDisplay: FC = () => {
   const classes = useStyles();
+  const { totalPoint } = useContext(TotalPointContext);
   const unit = <span className={classes.unit}>papapo</span>;
 
   return (

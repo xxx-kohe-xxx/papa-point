@@ -5,15 +5,17 @@ import './index.css';
 import firebase from 'firebase';
 import firebaseConfig from 'firebase-config';
 import App from './App';
-import reportWebVitals from './reportWebVitals';
 import FirebaseApp from './FirebaseApp';
+import TotalPointApp from './TotalPointApp';
 
 firebase.initializeApp(firebaseConfig);
 
 ReactDOM.render(
   <React.StrictMode>
     <FirebaseApp>
-      <App />
+      <TotalPointApp>
+        <App />
+      </TotalPointApp>
     </FirebaseApp>
   </React.StrictMode>,
   document.getElementById('root'),
@@ -22,4 +24,3 @@ ReactDOM.render(
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();

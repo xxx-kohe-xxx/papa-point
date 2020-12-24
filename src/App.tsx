@@ -4,13 +4,16 @@ import './App.css';
 import { TotalPointsDisplay } from 'components/TotalPointsDisplay';
 import { AddPoints } from 'components/AddPoints';
 import { IndexGiftList } from 'components/IndexGiftList';
+import GiftListApp from 'GiftListApp';
 
 const App: FC = () => {
   return (
     <>
       <TotalPointsDisplay />
       <AddPoints />
-      <IndexGiftList />
+      <GiftListApp>
+        <IndexGiftList />
+      </GiftListApp>
     </>
   );
 };

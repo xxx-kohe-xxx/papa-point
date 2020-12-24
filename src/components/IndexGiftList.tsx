@@ -1,8 +1,7 @@
 // eslint-disable-next-line no-use-before-define
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC, useContext } from 'react';
 import { Card, CardMedia, makeStyles } from '@material-ui/core';
-import { GiftList } from 'models/gift-list';
-import useGetGiftListDoc from 'hooks/use-get-gift-list-doc';
+import { GiftListContext } from 'contexts';
 import ProgressBar from './ProgressBar';
 
 const useStyles = makeStyles({
@@ -18,17 +17,7 @@ const useStyles = makeStyles({
 
 export const IndexGiftList: FC = () => {
   const classes = useStyles();
-
-  // GiftList取得
-  const getGiftListDoc = useGetGiftListDoc();
-  const [giftList, setGiftList] = useState<GiftList>([]);
-  const getGiftList = async () => {
-    getGiftListDoc.then((response) => setGiftList(response));
-  };
-  useEffect(() => {
-    getGiftList();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  const { giftList } = useContext(GiftListContext);
 
   return (
     <>

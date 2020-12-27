@@ -152,6 +152,18 @@ module.exports = {
       },
     ],
     'import/prefer-default-export': 'off',
+
+    // jsx-a11y
+    'jsx-a11y/label-has-associated-control': [ 'error', {
+      'required': {
+        'some': [ 'nesting', 'id'  ]
+      }
+    }],
+    'jsx-a11y/label-has-for': [ 'error', {
+      'required': {
+        'some': [ 'nesting', 'id'  ]
+      }
+    }]
   },
   settings: {
     'import/parsers': {

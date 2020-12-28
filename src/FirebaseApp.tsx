@@ -7,9 +7,10 @@ import { FirebaseContext } from './contexts';
 
 const FirebaseApp: FC = ({ children }) => {
   const db = firebase.firestore();
+  const storage = firebase.storage();
 
   return (
-    <FirebaseContext.Provider value={{ db }}>
+    <FirebaseContext.Provider value={{ db, storage }}>
       {children}
     </FirebaseContext.Provider>
   );

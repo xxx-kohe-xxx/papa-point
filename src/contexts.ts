@@ -4,9 +4,11 @@ import { createContext } from 'react';
 // Firebase
 type FirebaseContextValue = {
   db: firebase.firestore.Firestore | null;
+  storage: firebase.storage.Storage | null;
 };
 export const FirebaseContext = createContext<FirebaseContextValue>({
   db: null,
+  storage: null,
 });
 
 // TotalPoint

@@ -8,6 +8,7 @@ import {
   makeStyles,
   TextField,
 } from '@material-ui/core';
+import useStoreGiftImage from 'hooks/use-store-gift-image';
 import { cssConst } from '../constants';
 
 const useStyles = makeStyles({
@@ -38,17 +39,25 @@ const useStyles = makeStyles({
 
 export const RegistGift: FC = () => {
   const classes = useStyles();
-  const [image, setImage] = useState('');
+  const [image, setImage] = useState<File>();
+  const [preview, setPreview] = useState('');
+  const storeImage = useStoreGiftImage(image);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    if (event != null && event.target != null && event.target.files != null) {
-      const loadedImages = URL.createObjectURL(event.target.files[0]);
+    if (event.target.files != null) {
+      const loadedImages = event.target.files[0];
+      setPreview(URL.createObjectURL(loadedImages));
       setImage(loadedImages);
     }
   };
 
-  const registrationGift = () => {
-    console.log('登録します');
+  const registrationGift = async () => {
+    if (image) {
+      const url = await storeImage();
+      console.log(url);
+    } else {
+      alert('画像を選択してください');
+    }
   };
 
   return (
@@ -74,7 +83,7 @@ export const RegistGift: FC = () => {
         }}
         variant="outlined"
       />
-      {!image ? false : <img className={classes.media} src={image} alt="" />}
+      {!image ? false : <img className={classes.media} src={preview} alt="" />}
       <input
         accept="image/*"
         className={classes.input}

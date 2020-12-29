@@ -9,6 +9,7 @@ import {
   TextField,
 } from '@material-ui/core';
 import useStoreGiftImage from 'hooks/use-store-gift-image';
+import useResisterGift from 'hooks/use-register-gift';
 import { cssConst } from '../constants';
 
 const useStyles = makeStyles({
@@ -41,9 +42,19 @@ export const RegistGift: FC = () => {
   const classes = useStyles();
   const [image, setImage] = useState<File>();
   const [preview, setPreview] = useState('');
+  const [name, setName] = useState<string>('');
+  const [points, setPoints] = useState<number>(0);
   const storeImage = useStoreGiftImage(image);
+  const registerGift = useResisterGift();
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChangeName = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setName(event.target.value);
+  };
+  const handleChangePoints = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setPoints(Number(event.target.value));
+  };
+
+  const handleChangeImage = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.files != null) {
       const loadedImages = event.target.files[0];
       setPreview(URL.createObjectURL(loadedImages));
@@ -54,7 +65,11 @@ export const RegistGift: FC = () => {
   const registrationGift = async () => {
     if (image) {
       const url = await storeImage();
-      console.log(url);
+      await registerGift(name, points, url);
+      setImage(undefined);
+      setPreview('');
+      setName('');
+      setPoints(0);
     } else {
       alert('画像を選択してください');
     }
@@ -67,21 +82,25 @@ export const RegistGift: FC = () => {
         className={classes.textInput}
         id="gift-name"
         label="ごほうび名"
+        value={name}
         margin="normal"
         InputLabelProps={{
           shrink: true,
         }}
         variant="outlined"
+        onChange={handleChangeName}
       />
       <TextField
         className={classes.textInput}
         id="required-points"
         label="必要ポイント"
+        value={points}
         margin="normal"
         InputLabelProps={{
           shrink: true,
         }}
         variant="outlined"
+        onChange={handleChangePoints}
       />
       {!image ? false : <img className={classes.media} src={preview} alt="" />}
       <input
@@ -89,7 +108,7 @@ export const RegistGift: FC = () => {
         className={classes.input}
         id="registration-image"
         type="file"
-        onChange={handleChange}
+        onChange={handleChangeImage}
       />
       <label htmlFor="registration-image">
         <Button className={classes.button} variant="outlined" component="span">

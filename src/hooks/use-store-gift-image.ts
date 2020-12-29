@@ -1,18 +1,12 @@
 /* Firebase Storageにアクセスし,画像を保存する */
-
 import { useContext } from 'react';
+import randomString from 'util/randomString';
 import { FirebaseContext } from '../contexts';
 
 const useStoreGiftImage: (image: File | undefined) => () => Promise<string> = (
   image,
 ) => {
   const { storage } = useContext(FirebaseContext);
-
-  // 5桁のrandom文字列生成
-  const randomString = Math.random()
-    .toString(36)
-    .replace(/[^a-z]+/g, '')
-    .substr(0, 5);
 
   const storeImage: () => Promise<string> = async () => {
     const noImage = new File([new Blob()], '../../public/NoImage.jpg');

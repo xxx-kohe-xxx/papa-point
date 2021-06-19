@@ -3,7 +3,6 @@ import React, { FC, useContext } from 'react';
 import { Card, CardMedia, makeStyles } from '@material-ui/core';
 import { GiftListContext } from 'contexts';
 import ProgressBar from './ProgressBar';
-import { RegistGift } from './RegistGift';
 
 const useStyles = makeStyles({
   root: {
@@ -35,7 +34,6 @@ export const IndexGiftList: FC = () => {
           </Card>
         );
       })}
-      <RegistGift />
     </>
   );
 };

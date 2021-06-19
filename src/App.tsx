@@ -4,6 +4,7 @@ import './App.css';
 import { TotalPointsDisplay } from 'components/TotalPointsDisplay';
 import { AddPoints } from 'components/AddPoints';
 import { IndexGiftList } from 'components/IndexGiftList';
+import { RegistGift } from 'components/RegistGift';
 import GiftListApp from 'GiftListApp';
 
 const App: FC = () => {
@@ -13,6 +14,7 @@ const App: FC = () => {
       <AddPoints />
       <GiftListApp>
         <IndexGiftList />
+        <RegistGift />
       </GiftListApp>
     </>
   );

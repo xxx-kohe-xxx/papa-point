@@ -10,7 +10,9 @@ export default function Home() {
         <title>PaPaPoint</title>
         <link rel="icon" href="/favicon.ico"/>
       </Head>
-      <main></main>
+      <main>
+        <Navbar/>
+      </main>
       <footer></footer>
     </MuiThemeProvider>
   );

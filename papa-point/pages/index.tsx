@@ -1,15 +1,19 @@
 import Head from 'next/head'
 import Navbar from '../components/Navbar';
+import { useEffect } from 'react';
 import { useAuth } from '../lib/auth';
 import { useRouter } from 'next/router';
 
-export default function Home() {
+const Home = () => {
   const { auth } = useAuth();
   const router = useRouter();
 
-  if (!auth) {
-    router.push('/signin');
-  }
+  useEffect(() => {
+    if (!auth) {
+      router.push('/signin');
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  },[]);
 
   return (
     <>
@@ -24,3 +28,5 @@ export default function Home() {
     </>
   );
 }
+
+export default Home;

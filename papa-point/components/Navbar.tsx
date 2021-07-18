@@ -40,6 +40,7 @@ const Navbar: React.FC<{}> = () => {
           )}
         </Toolbar>
       </AppBar>
+      <Toolbar />
     </div>
   )
 };

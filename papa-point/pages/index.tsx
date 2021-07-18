@@ -1,12 +1,20 @@
 import Head from 'next/head'
 import Navbar from '../components/Navbar';
+import TotalPointDisplay from '../components/TotalPointDisplay';
 import { useEffect } from 'react';
 import { useAuth } from '../lib/auth';
 import { useRouter } from 'next/router';
+import { getTotalPoint } from '../utils/db';
 
-const Home = () => {
+export async function getServerSideProps() {
+  const totalPoint = await getTotalPoint('shota');
+  return { props: { totalPoint: JSON.stringify(totalPoint)} }
+}
+
+const Home = (props) => {
   const { auth } = useAuth();
   const router = useRouter();
+  const totalPoint = props.totalPoint;
 
   useEffect(() => {
     if (!auth) {
@@ -23,6 +31,7 @@ const Home = () => {
       </Head>
       <main>
         <Navbar/>
+        <TotalPointDisplay totalPoint={totalPoint}/>
       </main>
       <footer></footer>
     </>
